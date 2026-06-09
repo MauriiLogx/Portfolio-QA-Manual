@@ -1,6 +1,6 @@
-## 🔐 Módulo: Autenticación (Login)
+##  Módulo: Autenticación (Login)
 
-### 📝 TC-LOGIN-001: Inicio de sesión exitoso con usuario estándar (Happy Path)
+###  TC-LOGIN-001: Inicio de sesión exitoso con usuario estándar (Happy Path)
 * **Descripción:** Validar que un usuario registrado pueda iniciar sesión correctamente introduciendo credenciales válidas.
 * **Precondiciones:**
   1. El usuario debe tener acceso a internet.
@@ -15,7 +15,7 @@
 
 ---
 
-### 📝 TC-LOGIN-002: Intento de inicio de sesión con contraseña incorrecta (Caso Negativo)
+###  TC-LOGIN-002: Intento de inicio de sesión con contraseña incorrecta (Caso Negativo)
 * **Descripción:** Validar que el sistema impida el acceso y muestre un mensaje de error adecuado cuando se introduce una contraseña inválida.
 * **Precondiciones:**
   1. El navegador debe estar abierto en la página [https://www.saucedemo.com/](https://www.saucedemo.com/).
@@ -27,7 +27,7 @@
 
 ---
 
-### 📝 TC-LOGIN-003: Intento de inicio de sesión con campos vacíos (Caso de Borde)
+###  TC-LOGIN-003: Intento de inicio de sesión con campos vacíos (Caso de Borde)
 * **Descripción:** Verificar el comportamiento del sistema cuando el usuario intenta ingresar sin rellenar ningún campo de texto.
 * **Precondiciones:**
   1. El navegador debe estar abierto en la página [https://www.saucedemo.com/](https://www.saucedemo.com/).
