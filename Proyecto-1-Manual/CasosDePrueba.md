@@ -78,3 +78,43 @@
   4. Refrescar la página web (F5 o Ctrl+R).
   5. Volver a verificar el icono del carrito.
 * **Resultado Esperado:** En todo momento (en la vista de detalle, al volver atrás y después de refrescar la página), el contador del carrito debe mantener el número "2". Los datos de la sesión de compra deben persistir y no resetearse.
+
+## Módulo: Proceso de Checkout (Pago y Confirmación)
+
+### TC-CHECK-001: Flujo de compra exitoso (Happy Path)
+* **Descripción:** Validar que el usuario pueda completar una compra exitosamente ingresando datos válidos en el formulario de envío.
+* **Precondiciones:**
+  1. El usuario está en la pantalla del carrito (`/cart.html`) con al menos un producto agregado.
+* **Pasos a ejecutar:**
+  1. Hacer clic en el botón "Checkout".
+  2. En la pantalla "Checkout: Your Information" (`/checkout-step-one.html`), ingresar los siguientes datos:
+     * **First Name:** Juan
+     * **Last Name:** Pérez
+     * **Zip/Postal Code:** 12345
+  3. Hacer clic en el botón "Continue".
+  4. En la pantalla de revisión (`/checkout-step-two.html`), verificar que aparezca el total y hacer clic en el botón "Finish".
+* **Resultado Esperado:** El sistema debe procesar la orden correctamente y redirigir a la pantalla de éxito (`/checkout-complete.html`), mostrando el icono verde de verificación y el mensaje: *"Thank you for your order!"*. El icono del carrito debe quedar vacío (en "0").
+
+---
+
+### TC-CHECK-002: Validación de campos obligatorios en el formulario (Caso Negativo)
+* **Descripción:** Verificar que el sistema impida avanzar con el proceso de pago si el usuario deja campos requeridos vacíos en el formulario de información.
+* **Precondiciones:**
+  1. El usuario está en la pantalla de ingreso de datos (`/checkout-step-one.html`).
+* **Pasos a ejecutar:**
+  1. Ingresar en "First Name": Juan.
+  2. Ingresar en "Last Name": Pérez.
+  3. Dejar el campo "Zip/Postal Code" completamente vacío.
+  4. Hacer clic en el botón "Continue".
+* **Resultado Esperado:** El sistema no debe permitir avanzar a la siguiente pantalla. Debe resaltar el campo vacío y mostrar un mensaje de error en la parte inferior que diga exactamente: *"Error: Postal Code is required"*.
+
+---
+
+### TC-CHECK-003: Cancelación del proceso de checkout (Flujo Alternativo)
+* **Descripción:** Garantizar que si el usuario decide cancelar la compra a mitad del proceso, el sistema lo devuelva a la sección correcta y conserve los artículos en el carrito.
+* **Precondiciones:**
+  1. El usuario está en la pantalla de revisión final antes de pagar (`/checkout-step-two.html`).
+  2. El carrito mantiene los productos seleccionados.
+* **Pasos a ejecutar:**
+  1. Localizar y hacer clic en el botón "Cancel".
+* **Resultado Esperado:** El sistema debe abortar el proceso de pago de forma segura, redirigir al usuario de vuelta al catálogo principal (`/inventory.html`) y el icono del carrito debe seguir mostrando la misma cantidad de productos que tenía antes de iniciar el checkout (no se debe vaciar).
