@@ -35,3 +35,46 @@
 * **Pasos a ejecutar:**
   1. Hacer clic directamente en el botón "Login".
 * **Resultado Esperado:** El sistema debe bloquear la acción, resaltar los campos vacíos con un icono de advertencia y mostrar el mensaje de error: *"Epic sadface: Username is required"*.
+
+## Módulo: Gestión del Carrito de Compras
+
+### TC-CART-001: Agregar un producto al carrito exitosamente (Happy Path)
+* **Descripción:** Validar que al hacer clic en el botón "Add to cart" de un producto, este se agregue correctamente y el contador del carrito se actualice.
+* **Precondiciones:**
+  1. El usuario debe haber iniciado sesión y encontrarse en el catálogo de productos (`/inventory.html`).
+  2. El icono del carrito de compras (en la esquina superior derecha) debe estar vacío (sin números).
+* **Pasos a ejecutar:**
+  1. Localizar el primer producto de la lista (ej: "Sauce Labs Backpack").
+  2. Hacer clic en el botón "Add to cart" de ese producto.
+* **Resultado Esperado:**
+  * El botón del producto debe cambiar su texto a "Remove" y su estilo visual debe modificarse.
+  * El icono del carrito en la esquina superior derecha debe mostrar ahora el número "1" en color rojo, indicando que hay un artículo dentro.
+
+---
+
+### TC-CART-002: Remover un producto desde el catálogo (Caso Funcional)
+* **Descripción:** Verificar que el usuario pueda arrepentirse y quitar un producto del carrito directamente desde la lista de productos.
+* **Precondiciones:**
+  1. El usuario está en el catálogo (`/inventory.html`).
+  2. El usuario ya agregó previamente un producto, por lo que el botón dice "Remove" y el contador del carrito muestra "1".
+* **Pasos a ejecutar:**
+  1. Localizar el producto previamente agregado ("Sauce Labs Backpack").
+  2. Hacer clic en el botón "Remove".
+* **Resultado Esperado:**
+  * El botón debe volver a cambiar su texto a "Add to cart".
+  * El número "1" debe desaparecer por completo del icono del carrito, quedando este vacío nuevamente.
+
+---
+
+### TC-CART-003: Persistencia del carrito al navegar por la app (Caso de Borde / Flujo)
+* **Descripción:** Garantizar que los productos agregados al carrito no se pierdan si el usuario navega a otra sección de la página o refresca el sitio.
+* **Precondiciones:**
+  1. El usuario está en el catálogo (`/inventory.html`).
+  2. El usuario ha agregado dos productos al carrito (el contador muestra "2").
+* **Pasos a ejecutar:**
+  1. Hacer clic en el nombre de cualquier producto para entrar a su vista de detalle (ej: `/inventory-item.html?id=4`).
+  2. Verificar el icono del carrito en esa nueva pantalla.
+  3. Presionar el botón de "Atrás" del navegador para volver al catálogo principal.
+  4. Refrescar la página web (F5 o Ctrl+R).
+  5. Volver a verificar el icono del carrito.
+* **Resultado Esperado:** En todo momento (en la vista de detalle, al volver atrás y después de refrescar la página), el contador del carrito debe mantener el número "2". Los datos de la sesión de compra deben persistir y no resetearse.
